@@ -29,7 +29,9 @@ plot(r1,
 
 # -------- EJERCICIO ERDOS-RENLY MODEL -----------
 
-set.seed(1001)
+set.seed(1001) # Para que sea reproducible
+
+# Crear un object con la red aleatoria y replicar 100 veces
 r2 <- replicate(n = 100, sample_gnp(n = 20, # Número de vertices
                                       p = 0.5, # Probabilidad que se enlace
                                       directed = FALSE, # Si es direccionada o no
@@ -37,7 +39,7 @@ r2 <- replicate(n = 100, sample_gnp(n = 20, # Número de vertices
                   simplify = FALSE) 
 
 
-# Cálculo de degree a todos los elementos
+# Cálculo de degree a todos los elementos con sapply
 r2.2 <- sapply(r2, FUN = degree) 
 
 
@@ -46,7 +48,7 @@ DF_r2 <- data.frame(r2.2)
 
 
 
-# Crear tabla y calcular mediana, max y min
+# Crear tabla y calcular mediana, max y min en cada columna
 DF_r2_table <- data.frame(
   Max = sapply(DF_r2, FUN = max),
   Min = sapply(DF_r2, FUN = min),
